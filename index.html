@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Seguimiento de Calificaciones de Estudiantes</h2>
+    <div>
+        <h3 id="averageDisplay">Promedio de Calificaciones: </h3>
+    </div>
+    <!--Formulario-->
+    <form id="studentForm">
+        <div>
+            <label for="name">Nombre:</label>
+            <input type="text" id="name" required>
+        </div>
+        <div>
+            <label for="lastName">Apellido:</label>
+            <input type="text" id="lastName" required>
+        </div>
+        <div>
+            <label for="grade">Calificación (1.0 - 7.0):</label>
+            <input type="number" id="grade" step="0.1" min="1" max="7" required>
+        </div>
+        <button type="submit">Agregar Estudiante</button>
+    </form>
+    <table id="studentsTable" border=1 cellpadding="8" cellspacing="0">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Calificación</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!--Filas de datos-->
+    </tbody>
+    </table>
+    <script src="script.js"></script>
+</body>
+</html>
