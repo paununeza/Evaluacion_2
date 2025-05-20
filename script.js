@@ -31,8 +31,26 @@ function addStudentToTable(student) {
     row.innerHTML = `
         <td>${student.name}</td>
         <td>${student.lastName}</td>
-        <td>${student.grade}</td>`;    
+        <td>${student.grade}</td>
+        <td> <button class = "delete"> Eliminar</button></td>
+    `;
+
+    row.querySelector(".delete").addEventListener("click", function(){
+        deleteEstudiante(student,row);
+    });
+
     tableBody.appendChild(row);   
+}
+
+// Función para eliminar fila estudiante
+function deleteEstudiante(student, row){
+    // busca el estudiante en el array
+    const index = students.indexOf(student);
+    if (index > -1){
+        students.splice(index, 1);
+        row.remove();
+        updateAverage();
+    }
 }
 
 // Función para calcular promedio de calificaciones
