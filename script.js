@@ -32,14 +32,36 @@ function addStudentToTable(student) {
         <td>${student.name}</td>
         <td>${student.lastName}</td>
         <td>${student.grade}</td>
-        <td> <button class = "delete"> Eliminar</button></td>
+        <td> 
+           <button class = "edit"> Editar</button>
+           <button class = "delete"> Eliminar</button>
+        </td>
     `;
 
     row.querySelector(".delete").addEventListener("click", function(){
         deleteEstudiante(student,row);
     });
+    row.querySelector(".edit").addEventListener("click", function () {
+        editEstudiante(student, row);
+    });
 
     tableBody.appendChild(row);   
+}
+
+// Función para editar fila estudiante
+function editEstudiante(student, row) {
+    // Llenar el formulario con los datos del estudiante
+    document.getElementById("name").value = student.name;
+    document.getElementById("lastName").value = student.lastName;
+    document.getElementById("grade").value = student.grade;
+
+    // Eliminar el estudiante de la tabla y del array
+    const index = students.indexOf(student);
+    if (index > -1) {
+        students.splice(index, 1);
+        row.remove();
+        updateAverage();
+    }
 }
 
 // Función para eliminar fila estudiante

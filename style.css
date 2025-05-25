@@ -120,3 +120,30 @@ th {
         padding: 10px;
     }
 }
+
+button.edit {
+    background-color: #2d72d9;
+    color: white;
+    margin-right: 6px;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.edit:hover {
+    background-color: #1a56b3;
+}
+
+button.delete {
+    background-color: #2d72d9;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button.delete:hover {
+    background-color: #1a56b3;
+}
