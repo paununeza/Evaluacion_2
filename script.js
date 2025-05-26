@@ -2,6 +2,13 @@ const students = [];
 const tableBody = document.querySelector("#studentsTable tbody");
 const averageDisplay = document.getElementById("averageDisplay");
 averageDisplay.textContent = "Promedio de Calificaciones: No Disponible";
+const totalStudents = document.getElementById("totalStudents");
+totalStudents.textContent = "Total de estudiantes: 0";
+const numAprobados = document.getElementById("numAprobados");
+numAprobados.textContent = "Cantidad de aprobados: 0";
+const numReprobados = document.getElementById("numReprobados");
+numReprobados.textContent = "Cantidad de reprobados: 0";
+
 
 // Agregar evento al formulario para capturar el evento de envío (submit)
 document.getElementById("studentForm").addEventListener("submit", function(e) {
@@ -22,7 +29,7 @@ document.getElementById("studentForm").addEventListener("submit", function(e) {
     updateAverage();
     // Limpiar el formulario después de agregar el estudiante
     this.reset();
-
+    countStudent();
 });
 
 // Función para agregar un estudiante a la tabla
@@ -33,8 +40,8 @@ function addStudentToTable(student) {
         <td>${student.lastName}</td>
         <td>${student.grade}</td>
         <td> 
-           <button class = "edit"> Editar</button>
-           <button class = "delete"> Eliminar</button>
+           <button class = "edit">Editar</button>
+           <button class = "delete">Eliminar</button>
         </td>
     `;
 
@@ -55,7 +62,6 @@ function editEstudiante(student, row) {
     document.getElementById("lastName").value = student.lastName;
     document.getElementById("grade").value = student.grade;
 
-    // Eliminar el estudiante de la tabla y del array
     const index = students.indexOf(student);
     if (index > -1) {
         students.splice(index, 1);
@@ -66,12 +72,13 @@ function editEstudiante(student, row) {
 
 // Función para eliminar fila estudiante
 function deleteEstudiante(student, row){
-    // busca el estudiante en el array
+    // Busca el estudiante en el array
     const index = students.indexOf(student);
     if (index > -1){
         students.splice(index, 1);
         row.remove();
         updateAverage();
+        countStudent();
     }
 }
 
@@ -84,6 +91,24 @@ function updateAverage() {
     const totalGrades = students.reduce((sum, student) => sum + parseFloat(student.grade), 0);
     const average = (totalGrades / students.length).toFixed(2);
     averageDisplay.textContent = `Promedio de Calificaciones: ${average}`;
+}
+
+// Función para estadísticas
+function countStudent() {
+    if (students.length === 0){
+        totalStudents.textContent = "Total de estudiantes: 0";
+        numAprobados.textContent = "Cantidad de aprobados: 0";
+        numReprobados.textContent = "Cantidad de reprobados: 0";
+        return;
+    }
+    let totalEstudiantes = students.length;
+    totalStudents.textContent = `Total de estudiantes: ${totalEstudiantes}`;
+
+    const aprobado = students.filter(student => student.grade >= 4.0).length;
+    numAprobados.textContent = `Cantidad de aprobados: ${aprobado}`;
+
+    const reprobado = students.filter(student => student.grade < 4.0).length;
+    numReprobados.textContent = `Cantidad de reprobados: ${reprobado}`;
 }
 
 // Agregar mensajes de error en cada input en español

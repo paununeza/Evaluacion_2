@@ -11,6 +11,17 @@ h2 {
     margin-bottom: 20px;
 }
 
+h4 {
+    border: 2px solid #468ef3;
+    background-color: #e8f0ff;
+    color: #1c57a5;
+    font-weight: bold;
+    padding: 15px;
+    margin: 0 auto 30px;
+    width: fit-content;
+    border-radius: 2px;
+}
+
 #averageDisplay {
     border: 2px solid #468ef3;
     background-color: #e8f0ff;
